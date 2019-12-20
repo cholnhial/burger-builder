@@ -100,7 +100,7 @@ class BurgerBuilder extends Component {
 
     purchaseContinuedHandler = () => {
 
- const query = new URLSearchParams(this.state.ingredients);
+ const query = new URLSearchParams({...this.state.ingredients, totalPrice: this.state.totalPrice});
  this.props.history.push({
      pathname: "/checkout/",
      search: query.toString()
