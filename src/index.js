@@ -5,10 +5,34 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter} from "react-router-dom";
 import { Provider } from 'react-redux';
-import { createStore } from "redux";
-import reducer from './store/reducer';
+import { createStore, compose, applyMiddleware, combineReducers } from "redux";
+import burgerBuilderReducer from './store/reducers/burgerBuilder';
+import orderReducer from './store/reducers/order';
+import authReducer from './store/reducers/auth';
 
-const store = createStore(reducer);
+import thunk from 'redux-thunk';
+
+
+const composeEnhancers =
+    typeof window === 'object' &&
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?
+        window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+            // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
+        }) : compose;
+
+const enhancer = composeEnhancers(
+    applyMiddleware(thunk),
+    // other store enhancers if any
+);
+
+const rootReducer = combineReducers({
+    burgerBuilder: burgerBuilderReducer,
+    order: orderReducer,
+    auth: authReducer
+});
+
+const store = createStore(rootReducer, enhancer);
+
 
 const app = (
     <Provider store={store}>
