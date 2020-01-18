@@ -1,6 +1,9 @@
 # Demo 
 Go to https://burger-builder-d3b53.firebaseapp.com/.
 
+Here's a demo running:
+
+![React Burger Builder Demo](screens/demo.gif)
 
 
 
