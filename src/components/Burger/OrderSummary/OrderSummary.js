@@ -6,7 +6,6 @@ class OrderSummary extends Component {
 
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        console.log("[OrderSummary] componentDidUpdate");
     }
 
     render() {
